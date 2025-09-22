@@ -1,5 +1,5 @@
 #Create python package: 
-ros2 pkg create --build-type ament_python py_pubsub_example
+ros2 pkg create --build-type ament_python topics_pkg
 
 #Create python scripts for each node inside topics_pkg/topics_pkg folder
 

@@ -1,0 +1,6 @@
+#Create python package: 
+ros2 pkg create --build-type ament_python services_pkg
+
+#Create python scripts for each node inside services_pkg/services_pkg folder
+
+#Add entry_points for each node in setup.py
