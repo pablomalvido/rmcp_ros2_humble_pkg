@@ -1,0 +1,15 @@
+#Create python package: 
+ros2 pkg create --build-type ament_python actions_pkg
+
+#Create python scripts for each node inside actions_pkg/actions_pkg folder
+
+#Add entry_points for each node in setup.py
+
+############ OTHER INSTRUCTIONS AND TIPS ###########
+
+#Check action status:
+ros2 topic echo /fibonacci/_action/status
+
+#Action status meaning: https://docs.ros2.org/foxy/api/action_msgs/msg/GoalStatus.html
+
+#Action lifecycle diagram: https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html

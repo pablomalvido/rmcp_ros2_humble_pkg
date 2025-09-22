@@ -25,6 +25,7 @@ endif()
 # Generate service from srv file
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/CheckEvenOdd.srv"
+  "action/Fibonacci.action"
 )
 
 ament_export_dependencies(rosidl_default_runtime)
