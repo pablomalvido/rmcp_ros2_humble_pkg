@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="FASTbot">
+
+  <xacro:include filename="$(find my_robot_description)/urdf/robot_arm.urdf.xacro"/>
+
+  <xacro:arg name="ros2_control" default="false" /> 
+  <xacro:arg name="gripper" default="false"/>
+
+  <link name="world"/>
+
+  <xacro:robot_arm parent_link='world' xyz='0 0 0' rpy='0 0 0' gazebo='false'>
+  </xacro:robot_arm>
+
+</robot>
