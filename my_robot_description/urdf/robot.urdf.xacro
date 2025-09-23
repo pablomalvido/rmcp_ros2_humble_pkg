@@ -11,4 +11,9 @@
   <xacro:robot_arm parent_link='world' xyz='0 0 0' rpy='0 0 0' gazebo='false'>
   </xacro:robot_arm>
 
+  <xacro:if value="$(arg ros2_control)">
+    <xacro:include filename="$(find my_robot_description)/urdf/robot_control.urdf.xacro"/>
+    <xacro:robot_ros2_control gripper="$(arg gripper)" gazebo='true'></xacro:robot_ros2_control>
+  </xacro:if>
+
 </robot>

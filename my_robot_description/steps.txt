@@ -1,0 +1,40 @@
+#Create URDF package: 
+ros2 pkg create --build-type ament_cmake my_robot_description --dependencies xacro robot_state_publisher
+
+#Create urdf and xacro files inside my_robot_description/urdf folder
+
+#Add the directories you want to build in the install directory to the CMakeLists.txt
+install(
+  DIRECTORY config launch urdf rviz
+  DESTINATION share/${PROJECT_NAME}
+)
+
+#Create launch file inside launch folder
+
+#Compile the workspace
+colcon build --symlink-install
+
+
+### CONTROLLERS INFO AND USAGE ###
+#Check ROS2 Controllers info: https://github.com/ros-controls/ros2_controllers/blob/master/joint_trajectory_controller/doc/userdoc.rst
+
+#Check loaded controllers (active and inactive)
+ros2 control list_controllers
+
+#Check topics of your controllers and their message types
+ros2 topic list
+ros2 topic info /position_controller/commands 
+
+#Test position controller, example commands:
+ros2 topic pub /position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.1, 0.0, 0.0, 0.0]"
+ros2 topic pub /position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0]"
+ros2 topic pub /position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 1.57]"
+ros2 topic pub /position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.2, 0.0]"
+
+#Switch controllers using the controller manager in rqt:
+rqt
+
+#Test velocity controller, example commands:
+ros2 topic pub /velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [0.1, 0.0, 0.0, 0.0, 0.0]"
+ros2 topic pub /velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0]"
+ros2 topic pub /velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.05, 0.0, 0.0]"

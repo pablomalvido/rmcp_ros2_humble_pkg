@@ -2,117 +2,189 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arm">
 
     <xacro:macro name="robot_arm" params="parent_link:='world' xyz:='0 0 0' rpy:='0 0 0' gazebo:='false'" >
-        <joint name="world_base_link" type="fixed">
+        <joint name="world_base_link_joint" type="fixed">
             <origin rpy="${rpy}" xyz="${xyz}"/>
             <parent link="${parent_link}"/>
             <child link="base_link"/>
         </joint>    
 
         <link name="base_link">
-            <visual>
-                <origin rpy="0 0 0" xyz="0 0 0" />
-                <geometry>
-                    <box size="1 1 1" />
-                </geometry>
-                <material name="White">
-                    <color rgba="1.0 1.0 1.0 1.0"/>
-                </material>
-            </visual> 
-        </link>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<box size="1 1 1" />
+			</geometry>
+			<material name="White">
+				<color rgba="1.0 1.0 1.0 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<box size="1 1 1" />
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="1024" />
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<inertia ixx="170.667" ixy="0" ixz="0" iyy="170.667" iyz="0" izz="170.667" />
+		</inertial>
+	</link>
 
-        <joint name="base_link_link_1" type="revolute"> <axis xyz="0 0 1"/>
-            <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/> 
-            <origin rpy="0 0 0" xyz="0 0 0.5"/>
-            <parent link="base_link"/>
-            <child link="link_1"/>
-        </joint>
+	<joint name="joint_1" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+		<origin rpy="0 0 0" xyz="0 0 0.5"/>
+		<parent link="base_link"/>
+		<child link="link_1"/>
+	</joint>
 
-        <link name="link_1"> 
-            <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.2" /> 
-            <geometry>
-            <cylinder radius="0.35" length="0.4" /> 
-            </geometry>
-            <material name="Blue">
-            <color rgba="0.0 0.0 1.0 1.0"/>
-            </material>
-            </visual> 
-        </link>
+	<link name="link_1">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.2" />
+			<geometry>
+				<cylinder radius="0.35" length="0.4" />
+			</geometry>
+			<material name="Blue">
+				<color rgba="0.0 0.0 1.0 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0.2" />
+			<geometry>
+				<cylinder radius="0.35" length="0.4" />
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="157.633" />
+			<origin rpy="0 0 0" xyz="0 0 0.2" />
+			<inertia ixx="13.235" ixy="0" ixz="0" iyy="13.235" iyz="0" izz="9.655" />
+		</inertial>
+	</link>
 
-        <joint name="link1_link_2" type="revolute"> <axis xyz="0 1 0"/>
-            <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/> 
-            <origin rpy="0 0 0" xyz="0 0 0.4"/>
-            <parent link="link_1"/>
-            <child link="link_2"/>
-        </joint>
+	<joint name="joint_2" type="revolute">
+		<axis xyz="0 1 0"/>
+		<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+		<origin rpy="0 0 0" xyz="0 0 0.4"/>
+		<parent link="link_1"/>
+		<child link="link_2"/>
+	</joint>
 
-        <link name="link_2"> <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.4" /> 
-            <geometry>
-            <cylinder radius="0.15" length="0.8" /> 
-            </geometry> 
-            <material name="White">
-            <color rgba="1.0 1.0 1.0 1.0"/> 
-            </material>
-            </visual> 
-        </link>
+	<link name="link_2">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<geometry>
+				<cylinder radius="0.15" length="0.8" />
+			</geometry>
+			<material name="White">
+				<color rgba="1.0 1.0 1.0 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<geometry>
+				<cylinder radius="0.15" length="0.8" />
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="57.906" />
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<inertia ixx="12.679" ixy="0" ixz="0" iyy="12.679" iyz="0" izz="0.651" />
+		</inertial>
+	</link>
 
-        <joint name="link2_link_3" type="revolute"> <axis xyz="0 1 0"/>
-            <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/> 
-            <origin rpy="0 0 0" xyz="0 0 0.8"/>
-            <parent link="link_2"/>
-            <child link="link_3"/>
-        </joint>
+	<joint name="joint_3" type="revolute">
+		<axis xyz="0 1 0"/>
+		<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+		<origin rpy="0 0 0" xyz="0 0 0.8"/>
+		<parent link="link_2"/>
+		<child link="link_3"/>
+	</joint>
 
-        <link name="link_3"> 
-            <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.4" /> 
-            <geometry>
-            <cylinder radius="0.15" length="0.8" /> 
-            </geometry>
-            <material name="Blue">
-            <color rgba="0.0 0.0 1.0 1.0"/>
-            </material>
-            </visual> 
-        </link>
+	<link name="link_3">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<geometry>
+				<cylinder radius="0.15" length="0.8" />
+			</geometry>
+			<material name="Blue">
+				<color rgba="0.0 0.0 1.0 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<geometry>
+				<cylinder radius="0.15" length="0.8" />
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="57.906" />
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<inertia ixx="12.679" ixy="0" ixz="0" iyy="12.679" iyz="0" izz="0.651" />
+		</inertial>
+	</link>
 
-        <joint name="link3_link_4" type="revolute"> <axis xyz="0 1 0"/>
-            <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/> 
-            <origin rpy="0 0 0" xyz="0 0 0.8"/>
-            <parent link="link_3"/>
-            <child link="link_4"/>
-        </joint>
+	<joint name="joint_4" type="revolute">
+		<axis xyz="0 1 0"/>
+		<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+		<origin rpy="0 0 0" xyz="0 0 0.8"/>
+		<parent link="link_3"/>
+		<child link="link_4"/>
+	</joint>
 
-        <link name="link_4"> 
-            <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.4" /> 
-            <geometry>
-            <cylinder radius="0.15" length="0.8" /> 
-            </geometry>
-            <material name="White">
-            <color rgba="1.0 1.0 1.0 1.0"/>
-            </material>
-            </visual> 
-        </link>
+	<link name="link_4">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<geometry>
+				<cylinder radius="0.15" length="0.8" />
+			</geometry>
+			<material name="White">
+				<color rgba="1.0 1.0 1.0 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<geometry>
+				<cylinder radius="0.15" length="0.8" />
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="57.906" />
+			<origin rpy="0 0 0" xyz="0 0 0.4" />
+			<inertia ixx="12.679" ixy="0" ixz="0" iyy="12.679" iyz="0" izz="0.651" />
+		</inertial>
+	</link>
 
-        <joint name="link4_link_5" type="revolute"> <axis xyz="0 0 1"/>
-            <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/> 
-            <origin rpy="0 0 0" xyz="0 0 0.8"/>
-            <parent link="link_4"/>
-            <child link="link_5"/>
-        </joint>
+	<joint name="joint_5" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+		<origin rpy="0 0 0" xyz="0 0 0.8"/>
+		<parent link="link_4"/>
+		<child link="link_5"/>
+	</joint>
 
-        <link name="link_5"> 
-            <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.125" /> 
-            <geometry>
-            <cylinder radius="0.15" length="0.25" /> 
-            </geometry>
-            <material name="Blue">
-            <color rgba="0.0 0.0 1.0 1.0"/>
-            </material>
-            </visual> 
-        </link> 
+	<link name="link_5">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.125" />
+			<geometry>
+				<cylinder radius="0.15" length="0.25" />
+			</geometry>
+			<material name="Blue">
+				<color rgba="0.0 0.0 1.0 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0.125" />
+			<geometry>
+				<cylinder radius="0.15" length="0.25" />
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="18.056" />
+			<origin rpy="0 0 0" xyz="0 0 0.125" />
+			<inertia ixx="0.479" ixy="0" ixz="0" iyy="0.479" iyz="0" izz="0.204" />
+		</inertial>
+	</link> 
 
     </xacro:macro>
 
