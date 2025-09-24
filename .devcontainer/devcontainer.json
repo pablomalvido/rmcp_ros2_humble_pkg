@@ -36,7 +36,7 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/rosdev/ros2_ws/src,type=bind",
   "containerEnv": {
 		/* Uncomment to allow the container to access the X server on the host e.g. to run Rviz and other GUI tools*/
-    	"DISPLAY": "host.docker.internal:0.0" //"${localEnv:DISPLAY}"
+    	"DISPLAY": "${localEnv:DISPLAY}"
   },
   "mounts": [],
   "runArgs": [

@@ -41,6 +41,7 @@ RUN sudo apt-get update \
     && sudo apt-get install -y --no-install-recommends \
         ros-humble-rqt* \
         ros-humble-ros-gz \
+        ros-humble-gz-ros2-control \
         ros-humble-sdformat-urdf \
         ros-humble-joint-state-publisher-gui \
         ros-humble-ros2controlcli \
@@ -65,6 +66,8 @@ RUN sudo apt-get update \
         ros-humble-moveit-ros-visualization \
         ros-humble-joint-trajectory-controller \
         ros-humble-moveit-simple-controller-manager \
+        ros-humble-moveit \
+        ros-humble-ros2-control ros-humble-ros2-controllers \
         ros-humble-rviz2 \
         ros-humble-xacro \
     && sudo apt-get clean \
