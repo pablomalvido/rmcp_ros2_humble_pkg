@@ -78,9 +78,9 @@ def generate_launch_description():
         output='screen'
     )
 
-    joint_trajectory_controller = ExecuteProcess(
+    arm_trajectory_controller = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'inactive',
-                'joint_trajectory_controller'],
+                'arm_trajectory_controller'],
         output='screen'
     )
 
@@ -111,7 +111,7 @@ def generate_launch_description():
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn,
-                on_exit=[joint_trajectory_controller],
+                on_exit=[arm_trajectory_controller],
             )
         ),
         ]

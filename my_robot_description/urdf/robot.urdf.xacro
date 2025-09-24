@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find my_robot_description)/urdf/robot_arm.urdf.xacro"/>
 
-  <xacro:arg name="ros2_control" default="false" /> 
+  <xacro:arg name="ros2_control" default="true" /> 
   <xacro:arg name="gripper" default="false"/>
 
   <link name="world"/>

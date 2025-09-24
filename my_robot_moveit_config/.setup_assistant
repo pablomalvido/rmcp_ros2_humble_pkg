@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: my_robot_description
+    relative_path: urdf/robot_arm_control.urdf
+  srdf:
+    relative_path: config/FASTbot.srdf
+  package_settings:
+    author_name: pablo
+    author_email: pablo.malvidofresnillo@tuni.fi
+    generated_timestamp: 1758720382
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
