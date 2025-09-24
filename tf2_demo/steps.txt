@@ -1,0 +1,17 @@
+# Create Python package: 
+ros2 pkg create --build-type ament_python tf2_demo --dependencies rclpy tf2_ros geometry_msgs
+
+# Create python scripts inside tf2_demo/tf2_demo folder
+
+# Add entry_points for each node in setup.py
+
+
+### TEST AND USAGE ###
+# Launch robot visualization
+ros2 launch my_robot_description robot_visualization.launch.py
+
+# Run the broadcaster
+ros2 run tf2_demo broadcaster
+
+# Run the listener
+ros2 run tf2_demo listener
