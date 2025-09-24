@@ -14,6 +14,9 @@ def generate_launch_description():
         .robot_description(file_path="config/FASTbot.urdf.xacro")
         .robot_description_semantic(file_path="config/FASTbot.srdf")
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
+        .planning_scene_monitor(
+            publish_robot_description=True, publish_robot_description_semantic=True
+        )
         .planning_pipelines(
             pipelines=["ompl", "chomp", "pilz_industrial_motion_planner"]
         )
@@ -31,6 +34,9 @@ def generate_launch_description():
         package="controller_manager",
         executable="ros2_control_node",
         parameters=[moveit_config.robot_description, ros2_controllers_path],
+        remappings=[
+            ("/controller_manager/robot_description", "/robot_description"),
+        ],
         output="screen",
     )
 
@@ -77,18 +83,18 @@ def generate_launch_description():
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
-        output='screen',
-        parameters=[{'robot_description': moveit_config.robot_description}],
+        output='both',
+        parameters=[moveit_config.robot_description],
     )
 
 
     return LaunchDescription(
         [
+        rviz,
         robot_state_publisher,
+        move_group_node,
         ros2_control_node,
         load_joint_state_broadcaster,
         load_arm_trajectory_controller,
-        move_group_node,
-        rviz,
         ]
     )
