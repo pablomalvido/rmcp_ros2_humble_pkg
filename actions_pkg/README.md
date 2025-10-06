@@ -18,6 +18,18 @@ ros2 run actions_pkg fibonacci_server
 ros2 run actions_pkg fibonacci_client
 ```
 
+## INTERESTING COMMANDS AND DOCUMENTATION
+
+Check action status:
+
+```
+ros2 topic echo /fibonacci/_action/status
+```
+
+Action status meaning: https://docs.ros2.org/foxy/api/action_msgs/msg/GoalStatus.html
+
+Action lifecycle diagram: https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html
+
 ## REMINDER
 
 Remember to source the workspace in every terminal you use
@@ -27,4 +39,5 @@ source install/setup.bash
 ```
 
 Alternatively, you can add this line to your .bashrc file
+
 
