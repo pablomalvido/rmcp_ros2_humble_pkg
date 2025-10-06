@@ -93,11 +93,15 @@ Follow these steps (check video from 17:48 to 18:40): https://youtu.be/qWuudNxFG
 
 **5. Open a terminal and build the workspace:**
 
-colcon build --symlink-install
+```
+colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
+```
 
 **6. Source the built workspace environment:**
 
+```
 source install/setup.bash
+```
 
 ## Setup in Linux
 **1. Clone the Repository (Linux branch)**
@@ -125,8 +129,13 @@ sudo xhost +local:docker
 
 **5. Open a terminal and build the workspace:**
 
-colcon build --symlink-install
+```
+colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+```
 
 **6. Source the built workspace environment:**
 
+```
 source install/setup.bash
+```
