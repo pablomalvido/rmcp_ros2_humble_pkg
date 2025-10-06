@@ -138,6 +138,7 @@ colcon build --symlink-install --packages-skip cartesian_controller_simulation c
 ```
 source install/setup.bash
 ```
+<<<<<<< HEAD
 
 ## Test (Windows and Ubuntu)
 
@@ -147,3 +148,5 @@ After installation and setup, you can test if it works. Inside every package, yo
 ```
 source install/setup.bash
 ```
+=======
+>>>>>>> 652dd4dce8719e8cb1b7ecb87bf34403e8b2ee02
