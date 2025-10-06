@@ -131,7 +131,6 @@ sudo xhost +local:docker
 
 ```
 colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
-
 ```
 
 **6. Source the built workspace environment:**
