@@ -1,3 +1,4 @@
+
 planning_plugin: chomp_interface/CHOMPPlanner
 request_adapters: >-
   default_planner_request_adapters/AddTimeOptimalParameterization

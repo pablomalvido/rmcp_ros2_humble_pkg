@@ -93,11 +93,15 @@ Follow these steps (check video from 17:48 to 18:40): https://youtu.be/qWuudNxFG
 
 **5. Open a terminal and build the workspace:**
 
-colcon build --symlink-install
+```
+colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
+```
 
 **6. Source the built workspace environment:**
 
+```
 source install/setup.bash
+```
 
 ## Setup in Linux
 **1. Clone the Repository (Linux branch)**
@@ -125,8 +129,21 @@ sudo xhost +local:docker
 
 **5. Open a terminal and build the workspace:**
 
-colcon build --symlink-install
+```
+colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
+```
 
 **6. Source the built workspace environment:**
 
+```
 source install/setup.bash
+```
+
+## Test (Windows and Ubuntu)
+
+After installation and setup, you can test if it works. Inside every package, you will find a README file with instructions to run all the exercises. For testing you can use the most simple package, topics_pkg. Open this package and follow the instructions.
+
+**DO NOT FORGET TO SOURCE THE WORKSPACE IN EVERY TERMINAL YOU USE**
+```
+source install/setup.bash
+```
