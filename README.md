@@ -138,3 +138,12 @@ colcon build --symlink-install --packages-skip cartesian_controller_simulation c
 ```
 source install/setup.bash
 ```
+
+## Test (Windows and Ubuntu)
+
+After installation and setup, you can test if it works. Inside every package, you will find a README file with instructions to run all the exercises. For testing you can use the most simple package, topics_pkg. Open this package and follow the instructions.
+
+**DO NOT FORGET TO SOURCE THE WORKSPACE IN EVERY TERMINAL YOU USE**
+```
+source install/setup.bash
+```
