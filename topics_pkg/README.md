@@ -2,7 +2,7 @@
 
 This package contains examples of the usage of ROS2 Topics.
 
-It contains two nodes: talker (which publishes a message into the /chatter topic every second), a listener (which subscribes to the /chatter topic and prints the messages publishes in it).
+It contains two nodes: talker (which publishes a message into the /chatter topic every second), and listener (which subscribes to the /chatter topic and prints the messages publishes in it).
 
 These nodes can be run separately in two terminals:
 
@@ -32,4 +32,4 @@ Remember to source the workspace in every terminal you use
 source install/setup.bash
 ```
 
-Alternatively you can add this line to your .bashrc file
+Alternatively, you can add this line to your .bashrc file
