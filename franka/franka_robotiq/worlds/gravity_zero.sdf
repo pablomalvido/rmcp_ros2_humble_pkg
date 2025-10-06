@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="gravity_zero">
+
+    <!-- Disable gravity -->
+    <gravity>0 0 0</gravity>
+    
+    <physics name="default_physics" type="ode">
+      <gravity>0 0 0</gravity>
+    </physics>
+
+    <!-- Add a light so the world isn't totally dark -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/sun</uri>
+    </include>
+
+    <!-- Add a ground plane if needed (commented out for true "empty" world) -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/ground plane</uri>
+    </include>
+    
+
+  </world>
+</sdf>

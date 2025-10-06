@@ -3,20 +3,27 @@
     ros__parameters:
       update_rate: 1000  # Hz
 
-      fr3_arm_controller:
+      moveit_arm_controller:
         type: joint_trajectory_controller/JointTrajectoryController
-
-      fr3_gripper:
-        type: position_controllers/GripperActionController
 
       joint_state_broadcaster:
         type: joint_state_broadcaster/JointStateBroadcaster
 
       franka_robot_state_broadcaster:
         type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
-
+      
       cartesian_motion_controller:
         type: cartesian_motion_controller/CartesianMotionController
+
+      joint_impedance_example_controller:
+        type: franka_example_controllers/JointImpedanceExampleController
+
+      robotiq_gripper_controller:
+        type: position_controllers/GripperActionController
+
+      robotiq_activation_controller:
+        type: robotiq_controllers/RobotiqActivationController
+
 
 /**:
   franka_robot_state_broadcaster:
@@ -27,10 +34,11 @@
       lock_update_success: true # return update OK, although lock fails (no update occurs)
       
 /**: 
-  fr3_arm_controller:
+  moveit_arm_controller:
     ros__parameters:
       command_interfaces:
-        - position
+        - effort #REAL
+        #- position #SIM
       state_interfaces:
         - position
         - velocity
@@ -51,12 +59,7 @@
         fr3_joint6: { p: 150., d: 10., i: 0., i_clamp: 1. }
         fr3_joint7: { p: 50., d: 5., i: 0., i_clamp: 1. }
 
-/**:
-  fr3_gripper:
-    ros__parameters:
-      joint: fr3_finger_joint1
-
-/**:
+/**: 
   cartesian_motion_controller:
     ros__parameters:
 
@@ -89,3 +92,36 @@
           rot_x: {p: 0.5}
           rot_y: {p: 0.5}
           rot_z: {p: 0.5}
+
+/**:
+  joint_impedance_example_controller:
+    ros__parameters:
+      k_gains:
+        - 24.0
+        - 24.0
+        - 24.0
+        - 24.0
+        - 10.0
+        - 6.0
+        - 2.0
+      d_gains:
+        - 2.0
+        - 2.0
+        - 2.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 0.5
+
+/**:
+  robotiq_gripper_controller:
+    ros__parameters:
+      default: true
+      joint: robotiq_85_left_knuckle_joint
+      use_effort_interface: true
+      use_speed_interface: true
+
+/**:
+  robotiq_activation_controller:
+    ros__parameters:
+      default: true

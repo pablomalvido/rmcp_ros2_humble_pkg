@@ -1,0 +1,161 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    joint_position_example_controller:
+      type: franka_example_controllers/JointPositionExampleController
+
+    joint_velocity_example_controller:
+      type: franka_example_controllers/JointVelocityExampleController
+
+    joint_impedance_example_controller:
+      type: franka_example_controllers/JointImpedanceExampleController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    moveit_robotiq_gripper_controller:
+      type: position_controllers/GripperActionController
+
+    gravity_compensation_example_controller:
+      type: franka_example_controllers/GravityCompensationExampleController
+
+    cartesian_motion_controller:
+      type: cartesian_motion_controller/CartesianMotionController
+
+    moveit_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    cartesian_force_controller:
+      type: cartesian_force_controller/CartesianForceController
+
+
+cartesian_motion_controller:
+  ros__parameters:
+
+    # See the cartesian_compliance_controller
+    end_effector_link: "fr3_link8"
+    robot_base_link: "fr3_link0"
+    joints:
+      - fr3_joint1
+      - fr3_joint2
+      - fr3_joint3
+      - fr3_joint4
+      - fr3_joint5
+      - fr3_joint6
+      - fr3_joint7
+
+    # See the cartesian_compliance_controller
+    command_interfaces:
+        #- position
+      - velocity
+
+    solver:
+        error_scale: 1.0
+        iterations: 10
+        publish_state_feedback: True
+
+    pd_gains:
+        trans_x: {p: 1.0}
+        trans_y: {p: 1.0}
+        trans_z: {p: 1.0}
+        rot_x: {p: 0.5}
+        rot_y: {p: 0.5}
+        rot_z: {p: 0.5}
+
+
+cartesian_force_controller:
+  ros__parameters:
+
+    # See the cartesian_compliance_controller
+    end_effector_link: "tool0"
+    robot_base_link: "fr3_link0"
+    ft_sensor_ref_link: "fr3_link8"
+    joints:
+      - fr3_joint1
+      - fr3_joint2
+      - fr3_joint3
+      - fr3_joint4
+      - fr3_joint5
+      - fr3_joint6
+      - fr3_joint7
+
+    # See the cartesian_compliance_controller
+    command_interfaces:
+      - position
+      #- velocity
+
+    solver:
+        error_scale: 0.5
+        publish_state_feedback: True
+
+    pd_gains:
+        trans_x: {p: 0.05}
+        trans_y: {p: 0.05}
+        trans_z: {p: 0.05}
+        rot_x: {p: 1.5}
+        rot_y: {p: 1.5}
+        rot_z: {p: 1.5}
+
+
+moveit_robotiq_gripper_controller:
+  ros__parameters:
+    default: true
+    joint: robotiq_85_left_knuckle_joint
+    use_effort_interface: true
+    use_speed_interface: true
+
+gravity_compensation_example_controller:
+  ros__parameters:
+    arm_id: "fr3"
+
+joint_position_example_controller:
+  ros__parameters:
+    gazebo: true
+
+joint_velocity_example_controller:
+  ros__parameters:
+    gazebo: true
+  
+joint_impedance_example_controller:
+  ros__parameters:
+    k_gains:
+      - 24.0
+      - 24.0
+      - 24.0
+      - 24.0
+      - 10.0
+      - 6.0
+      - 2.0
+    d_gains:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 0.5
+
+moveit_arm_controller:
+  ros__parameters:
+    joints:
+      - fr3_joint1
+      - fr3_joint2
+      - fr3_joint3
+      - fr3_joint4
+      - fr3_joint5
+      - fr3_joint6
+      - fr3_joint7
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    # gains:
+    #     fr3_joint1: { p: 600., d: 30., i: 0., i_clamp: 1. }
+    #     fr3_joint2: { p: 600., d: 30., i: 0., i_clamp: 1. }
+    #     fr3_joint3: { p: 600., d: 30., i: 0., i_clamp: 1. }
+    #     fr3_joint4: { p: 600., d: 30., i: 0., i_clamp: 1. }
+    #     fr3_joint5: { p: 250., d: 10., i: 0., i_clamp: 1. }
+    #     fr3_joint6: { p: 150., d: 10., i: 0., i_clamp: 1. }
+    #     fr3_joint7: { p: 50., d: 5., i: 0., i_clamp: 1. }

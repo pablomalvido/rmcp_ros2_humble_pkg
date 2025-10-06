@@ -6,17 +6,20 @@
       fr3_arm_controller:
         type: joint_trajectory_controller/JointTrajectoryController
 
-      fr3_gripper:
-        type: position_controllers/GripperActionController
-
       joint_state_broadcaster:
         type: joint_state_broadcaster/JointStateBroadcaster
 
       franka_robot_state_broadcaster:
         type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
-
+      
       cartesian_motion_controller:
         type: cartesian_motion_controller/CartesianMotionController
+
+      joint_impedance_example_controller:
+        type: franka_example_controllers/JointImpedanceExampleController
+
+      cartesian_force_controller:
+        type: cartesian_force_controller/CartesianForceController
 
 /**:
   franka_robot_state_broadcaster:
@@ -30,7 +33,8 @@
   fr3_arm_controller:
     ros__parameters:
       command_interfaces:
-        - position
+        - effort #REAL
+        #- position #SIM
       state_interfaces:
         - position
         - velocity
@@ -51,12 +55,7 @@
         fr3_joint6: { p: 150., d: 10., i: 0., i_clamp: 1. }
         fr3_joint7: { p: 50., d: 5., i: 0., i_clamp: 1. }
 
-/**:
-  fr3_gripper:
-    ros__parameters:
-      joint: fr3_finger_joint1
-
-/**:
+/**: 
   cartesian_motion_controller:
     ros__parameters:
 
@@ -74,8 +73,8 @@
 
       # See the cartesian_compliance_controller
       command_interfaces:
-        - position
-        #- velocity
+          #- position
+        - velocity
 
       solver:
           error_scale: 1.0
@@ -89,3 +88,57 @@
           rot_x: {p: 0.5}
           rot_y: {p: 0.5}
           rot_z: {p: 0.5}
+
+/**:
+  cartesian_force_controller:
+    ros__parameters:
+
+      # See the cartesian_compliance_controller
+      end_effector_link: "tcp"
+      robot_base_link: "fr3_link0"
+      ft_sensor_ref_link: "nordbo_ft_sensor_link"
+      joints:
+        - fr3_joint1
+        - fr3_joint2
+        - fr3_joint3
+        - fr3_joint4
+        - fr3_joint5
+        - fr3_joint6
+        - fr3_joint7
+
+      # See the cartesian_compliance_controller
+      command_interfaces:
+        - position
+        #- velocity
+
+      solver:
+          error_scale: 0.5
+          publish_state_feedback: True
+
+      pd_gains:
+          trans_x: {p: 0.05}
+          trans_y: {p: 0.05}
+          trans_z: {p: 0.05}
+          rot_x: {p: 1.5}
+          rot_y: {p: 1.5}
+          rot_z: {p: 1.5}
+
+/**:
+  joint_impedance_example_controller:
+    ros__parameters:
+      k_gains:
+        - 24.0
+        - 24.0
+        - 24.0
+        - 24.0
+        - 10.0
+        - 6.0
+        - 2.0
+      d_gains:
+        - 2.0
+        - 2.0
+        - 2.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 0.5

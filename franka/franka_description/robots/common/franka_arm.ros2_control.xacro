@@ -66,9 +66,9 @@
       <xacro:configure_joint joint_name="${arm_prefix}${arm_id}_joint5" initial_position="0.0"/>
       <xacro:configure_joint joint_name="${arm_prefix}${arm_id}_joint6" initial_position="${pi/2}"/>
       <xacro:configure_joint joint_name="${arm_prefix}${arm_id}_joint7" initial_position="${pi/4}"/>
-      <xacro:if value="${gazebo and hand}">
+      <!--xacro:if value="${gazebo and hand}"-->
         <xacro:configure_joint joint_name="${arm_prefix}${arm_id}_finger_joint1" initial_position="0.0" />
-      </xacro:if>
+      <!--/xacro:if-->
 
 
       <xacro:macro name="general_purpose_io" params="prefix command_interface index">
