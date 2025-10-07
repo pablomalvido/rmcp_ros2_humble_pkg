@@ -3,14 +3,14 @@
 ROS2 Humble Docker used in the AUT.841 Robot Manipulators: Modeling, Control and Programming course of Tampere University.
 
 ## Configure Docker in Windows
-1. Download and install Docker Desktop: https://docs.docker.com/desktop/setup/install/windows-install/ 
+1. Download and install Docker Desktop: https://docs.docker.com/desktop/setup/install/windows-install/. You may need to restart your computer to finish the installation.
 
 2. After installation, it may ask you to update wsl. In that case, write this command in the terminal: 
 
 ```
 wsl --update
 ```
-3. Download xlaunch for windows: https://sourceforge.net/projects/vcxsrv/
+3. Download xlaunch for Windows: https://sourceforge.net/projects/vcxsrv/
 
 4. Set up xlaunch: https://www.youtube.com/watch?v=qWuudNxFGOQ
 
@@ -81,7 +81,7 @@ git clone https://github.com/pablomalvido/rmcp_ros2_humble_pkg.git
 
 **2. Open Visual Studio Code ...**
 
-Then, open the folder ```rmcp_ros2_humble_pkg``` in Visual Studio Code
+Then, open the folder ```rmcp_ros2_humble_pkg``` in Visual Studio Code. Before executing the next step, Docker Desktop must be running.
 
 **3. Choose Reopen in container when prompted**
 
@@ -93,7 +93,9 @@ Follow these steps (check video from 17:48 to 18:40): https://youtu.be/qWuudNxFG
 
 **5. Open a terminal and build the workspace:**
 
+The terminal must be open in the Docker container, meaning inside the Visual Studio window.
 ```
+cd ~/ros2_ws
 colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
@@ -129,7 +131,9 @@ sudo xhost +local:docker
 
 **5. Open a terminal and build the workspace:**
 
+The terminal must be open in the Docker container, meaning inside the Visual Studio window.
 ```
+cd ~/ros2_ws
 colcon build --symlink-install --packages-skip cartesian_controller_simulation cartesian_controller_tests --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
