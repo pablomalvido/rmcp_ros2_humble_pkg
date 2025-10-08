@@ -1,4 +1,4 @@
-# RMCP ROS2 HUMBLE PACKAGE
+# RMCP ROS2 HUMBLE WORKSPACE
 
 ROS2 Humble Docker used in the AUT.841 Robot Manipulators: Modeling, Control and Programming course of Tampere University.
 
