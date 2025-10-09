@@ -70,6 +70,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/packa
 sudo apt update
 sudo apt install -y code
 ```
+Then, download 'Docker' and 'Dev Containers' extensions in Visual Studio Code.
 
 ## Setup in Windows
 **1. Clone the Repository**
