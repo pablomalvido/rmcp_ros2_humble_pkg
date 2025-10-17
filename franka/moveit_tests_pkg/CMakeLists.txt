@@ -37,9 +37,16 @@ target_include_directories(move_target_program
   PUBLIC include)
 ament_target_dependencies(move_target_program rclcpp moveit_ros_planning_interface)
 
+add_executable(move_named_target_example
+  src/move_named_target_example.cpp)
+target_include_directories(move_named_target_example
+  PUBLIC include)
+ament_target_dependencies(move_named_target_example rclcpp moveit_ros_planning_interface)
+
 install(TARGETS  
   move_cartesian_program
   move_target_program
+  move_named_target_example
   DESTINATION lib/${PROJECT_NAME}
 )
 
